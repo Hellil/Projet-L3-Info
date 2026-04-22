@@ -4,7 +4,11 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
+<<<<<<< Updated upstream
   productGUID: fabd1d07f17c8364196482c72a41bb5b
+=======
+  productGUID: 71e1a5851d2f9d64083e481c35a1fcd8
+>>>>>>> Stashed changes
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -41,6 +45,10 @@ PlayerSettings:
     height: 1
   m_SplashScreenLogos: []
   m_VirtualRealitySplashScreen: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+  m_HolographicTrackingLossScreen: {fileID: 0}
+>>>>>>> Stashed changes
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
   defaultScreenWidthWeb: 960
@@ -69,7 +77,10 @@ PlayerSettings:
   androidStartInFullscreen: 1
   androidRenderOutsideSafeArea: 1
   androidUseSwappy: 0
+<<<<<<< Updated upstream
   androidDisplayOptions: 1
+=======
+>>>>>>> Stashed changes
   androidBlitType: 0
   androidResizeableActivity: 1
   androidDefaultWindowWidth: 1920
@@ -113,7 +124,10 @@ PlayerSettings:
   xboxEnableGuest: 0
   xboxEnablePIXSampling: 0
   metalFramebufferOnly: 0
+<<<<<<< Updated upstream
   metalUseMetalDisplayLink: 0
+=======
+>>>>>>> Stashed changes
   xboxOneResolution: 0
   xboxOneSResolution: 0
   xboxOneXResolution: 3
@@ -147,10 +161,18 @@ PlayerSettings:
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
+<<<<<<< Updated upstream
+=======
+  m_HolographicPauseOnTrackingLoss: 1
+>>>>>>> Stashed changes
   xboxOneDisableKinectGpuReservation: 1
   xboxOneEnable7thCore: 1
   vrSettings:
     enable360StereoCapture: 0
+<<<<<<< Updated upstream
+=======
+  isWsaHolographicRemotingEnabled: 0
+>>>>>>> Stashed changes
   enableFrameTimingStats: 0
   enableOpenGLProfilerGPURecorders: 1
   allowHDRDisplaySupport: 0
@@ -174,10 +196,16 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
+<<<<<<< Updated upstream
   AndroidMinSdkVersion: 25
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   AndroidPreferredDataLocation: 1
+=======
+  AndroidMinSdkVersion: 23
+  AndroidTargetSdkVersion: 0
+  AndroidPreferredInstallLocation: 1
+>>>>>>> Stashed changes
   aotOptions: 
   stripEngineCode: 1
   iPhoneStrippingLevel: 0
@@ -192,11 +220,19 @@ PlayerSettings:
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
   iOSSimulatorArchitecture: 0
+<<<<<<< Updated upstream
   iOSTargetOSVersionString: 15.0
   tvOSSdkVersion: 0
   tvOSSimulatorArchitecture: 0
   tvOSRequireExtendedGameController: 0
   tvOSTargetOSVersionString: 15.0
+=======
+  iOSTargetOSVersionString: 13.0
+  tvOSSdkVersion: 0
+  tvOSSimulatorArchitecture: 0
+  tvOSRequireExtendedGameController: 0
+  tvOSTargetOSVersionString: 13.0
+>>>>>>> Stashed changes
   VisionOSSdkVersion: 0
   VisionOSTargetOSVersionString: 1.0
   uIPrerenderedIcon: 0
@@ -266,7 +302,10 @@ PlayerSettings:
   useCustomGradleSettingsTemplate: 0
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 2
+<<<<<<< Updated upstream
   AndroidAllowedArchitectures: -13
+=======
+>>>>>>> Stashed changes
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: 
@@ -569,7 +608,11 @@ PlayerSettings:
   locationUsageDescription: 
   microphoneUsageDescription: 
   bluetoothUsageDescription: 
+<<<<<<< Updated upstream
   macOSTargetOSVersion: 12.0
+=======
+  macOSTargetOSVersion: 11.0
+>>>>>>> Stashed changes
   switchNMETAOverride: 
   switchNetLibKey: 
   switchSocketMemoryPoolSize: 6144
@@ -922,10 +965,17 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
+<<<<<<< Updated upstream
   cloudProjectId: c4f59c2b-fe72-4126-a70f-5e21bc09ba66
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Projet 2026-04-22_09-44-30
+=======
+  cloudProjectId: 502d6583-16b2-411d-83bc-31e07cecd402
+  framebufferDepthMemorylessMode: 0
+  qualitySettingsNames: []
+  projectName: Projet 2026-04-20_11-37-54
+>>>>>>> Stashed changes
   organizationId: hellil
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
@@ -936,5 +986,8 @@ PlayerSettings:
   androidVulkanDenyFilterList: []
   androidVulkanAllowFilterList: []
   androidVulkanDeviceFilterListAsset: {fileID: 0}
+<<<<<<< Updated upstream
   d3d12DeviceFilterListAsset: {fileID: 0}
   allowedHttpConnections: 3
+=======
+>>>>>>> Stashed changes
