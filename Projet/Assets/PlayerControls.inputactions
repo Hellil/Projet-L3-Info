@@ -1,0 +1,60 @@
+{
+    "name": "PlayerControls",
+    "maps": [
+        {
+            "name": "Movement",
+            "id": "662dac85-34c2-4b30-bbad-6ee4716dca29",
+            "actions": [
+                {
+                    "name": "RightAnalogStick",
+                    "type": "PassThrough",
+                    "id": "fdb14665-5405-4712-8d7c-c4b6d6eeecb0",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GamepadEastButton",
+                    "type": "Button",
+                    "id": "0aa5f73c-1823-4546-a7f7-c26a0809b145",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6b648cde-3337-42f1-8ce0-ef9ba2648be1",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player",
+                    "action": "RightAnalogStick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "439ba96b-04d8-4256-99d1-bd8c74ff22a6",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player",
+                    "action": "GamepadEastButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Player",
+            "bindingGroup": "Player",
+            "devices": []
+        }
+    ]
+}
