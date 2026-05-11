@@ -2645,7 +2645,7 @@ MonoBehaviour:
   rotationSpeed: 15
   speed: 25
   gravity: -300
-  jumpForce: 100
+  jumpForce: 70
   currentPlanet: {fileID: 1766641799}
   playerVisual: {fileID: 92820590}
   isTouchingPlanetSurface: 0
