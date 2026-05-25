@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerCollider
   - Planet
+  - Launch
   layers:
   - Default
   - TransparentFX

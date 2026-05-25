@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 1483783352}
   - component: {fileID: 1483783354}
   - component: {fileID: 1375158419634042497}
+  - component: {fileID: 3388812037276587981}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -305,7 +306,7 @@ MonoBehaviour:
     m_Bits: 8
   _groundCheck: {fileID: 2426596154567813008}
   _cam: {fileID: 1687258585}
-  _animator: {fileID: 0}
+  isLaunching: 0
 --- !u!114 &1375158419634042497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +319,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6faab044433d8342bac3990be0fcc89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GravityBody
+  isActive: 1
+--- !u!114 &3388812037276587981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2426596155683567241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea31308dbbcefed44bdf90c9c0b5a17d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StarLauncher
 --- !u!1 &7797411727102519914
 GameObject:
   m_ObjectHideFlags: 0
