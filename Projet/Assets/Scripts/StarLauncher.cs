@@ -27,11 +27,12 @@ public class StarLauncher : MonoBehaviour
 
     void Update()
     {
-        if (insideLaunchStar && Input.GetKeyDown(KeyCode.P))
+        if (insideLaunchStar && Input.GetKeyDown(KeyCode.Space))
         {
             _playerController.isLaunching = true;
             StartCoroutine(Launch());
         }
+        // ? Plus rien ici pendant le vol, on laisse les triggers travailler seuls
     }
 
     IEnumerator Launch()
@@ -54,17 +55,11 @@ public class StarLauncher : MonoBehaviour
         float pathLength = _currentSpline.CalculateLength();
         float duration = pathLength / speed;
 
-        // Log pour comprendre ce qui se passe
-        UnityEngine.Debug.Log($"[StarLaunch] Spline trouvé : {_currentSpline.gameObject.name}");
-        UnityEngine.Debug.Log($"[StarLaunch] Position joueur : {transform.position}");
-        UnityEngine.Debug.Log($"[StarLaunch] Début spline (t=0) : {GetSplineWorldPosition(0f)}");
-        UnityEngine.Debug.Log($"[StarLaunch] Fin spline (t=1) : {GetSplineWorldPosition(1f)}");
-        UnityEngine.Debug.Log($"[StarLaunch] Durée du vol : {duration}s");
-
-        // Vol direct le long du spline, sans parentage ni animation
         DOVirtual.Float(0f, 1f, duration, (t) =>
         {
-            transform.position = GetSplineWorldPosition(t);
+            // ? MovePosition au lieu de transform.position
+            // déclenche les OnTriggerEnter/Exit sur les kinematic Rigidbodies
+            _rigidbody.MovePosition(GetSplineWorldPosition(t));
         })
         .SetEase(Ease.InOutSine)
         .OnComplete(Land);
@@ -79,12 +74,52 @@ public class StarLauncher : MonoBehaviour
 
     void Land()
     {
-        UnityEngine.Debug.Log($"[StarLaunch] Atterrissage à : {transform.position}");
         _rigidbody.isKinematic = false;
         _rigidbody.linearVelocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
-        _gravityBody.isActive = true;
         _playerController.isLaunching = false;
+
+        // Calculer la direction vers la planète la plus proche
+        GravityArea[] all = FindObjectsByType<GravityArea>(FindObjectsSortMode.None);
+        GravityArea nearest = null;
+        float best = float.MaxValue;
+        foreach (var a in all)
+        {
+            float d = Vector3.Distance(transform.position, a.transform.position);
+            if (d < best) { best = d; nearest = a; }
+        }
+
+        if (nearest != null)
+            StartCoroutine(ForceGravity(nearest));
+        else
+            _gravityBody.isActive = true;
+    }
+
+    IEnumerator ForceGravity(GravityArea target)
+    {
+        float timer = 2f;
+        while (timer > 0f)
+        {
+            timer -= Time.fixedDeltaTime;
+
+            // Direction vers la planète cible
+            Vector3 dir = (target.transform.position - transform.position).normalized;
+
+            // Appliquer la force directement, sans passer par GravityBody
+            _rigidbody.AddForce(dir * 800f * Time.fixedDeltaTime, ForceMode.Acceleration);
+
+            // Aligner le joueur sur cette gravité
+            Quaternion targetRot = Quaternion.FromToRotation(transform.up, -dir)
+                                   * transform.rotation;
+            _rigidbody.MoveRotation(Quaternion.Slerp(
+                _rigidbody.rotation, targetRot, Time.fixedDeltaTime * 5f));
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        // Après 2 secondes, réactiver GravityBody normalement
+        _gravityBody.isActive = true;
+        UnityEngine.Debug.Log("[Land] GravityBody réactivé");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -93,7 +128,6 @@ public class StarLauncher : MonoBehaviour
         {
             insideLaunchStar = true;
             _launchObject = other.transform;
-            UnityEngine.Debug.Log($"[StarLaunch] Trigger entré : {other.name}");
         }
     }
 

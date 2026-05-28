@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa89252f9e702cb40810f6a5b5e2299f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _priority: 0
+  _priority: 1
   _center: {x: -34.29, y: 15.75, z: 0}
 --- !u!135 &430205058
 SphereCollider:
@@ -170,7 +170,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.8
+  m_Radius: 1.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &430205059
 Transform:
