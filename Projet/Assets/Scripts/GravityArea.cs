@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Diagnostics;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -6,27 +6,31 @@ public abstract class GravityArea : MonoBehaviour
 {
     [SerializeField] private int _priority;
     public int Priority => _priority;
-    
+
     void Start()
     {
-        transform.GetComponent<Collider>().isTrigger = true;
+        GetComponent<Collider>().isTrigger = true;
     }
-    
-    public abstract Vector3 GetGravityDirection(GravityBody _gravityBody);
-    
+
+    public abstract Vector3 GetGravityDirection(GravityBody gravityBody);
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out GravityBody gravityBody))
+        GravityBody gravityBody = other.GetComponentInParent<GravityBody>();
+        if (gravityBody != null)
         {
             gravityBody.AddGravityArea(this);
+            UnityEngine.Debug.Log($"[GravityArea] {name} → Enter : {gravityBody.name}");
         }
     }
-    
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out GravityBody gravityBody))
+        GravityBody gravityBody = other.GetComponentInParent<GravityBody>();
+        if (gravityBody != null)
         {
             gravityBody.RemoveGravityArea(this);
+            UnityEngine.Debug.Log($"[GravityArea] {name} → Exit : {gravityBody.name}");
         }
     }
 }

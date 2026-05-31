@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _priority: 1
-  _center: {x: -34.29, y: 15.75, z: 0}
+  _center: {x: -69.2, y: 13.5, z: 0}
 --- !u!135 &430205058
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1222,7 +1222,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 65.85068, y: 65.85068, z: 65.85068}
+  m_LocalScale: {x: 40, y: 40, z: 40}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

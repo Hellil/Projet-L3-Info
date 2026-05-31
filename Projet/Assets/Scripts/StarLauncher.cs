@@ -32,7 +32,6 @@ public class StarLauncher : MonoBehaviour
             _playerController.isLaunching = true;
             StartCoroutine(Launch());
         }
-        // ? Plus rien ici pendant le vol, on laisse les triggers travailler seuls
     }
 
     IEnumerator Launch()
@@ -42,23 +41,19 @@ public class StarLauncher : MonoBehaviour
         DOTween.KillAll();
 
         _currentSpline = _launchObject.GetComponentInChildren<SplineContainer>();
-
         if (_currentSpline == null)
         {
-            UnityEngine.Debug.LogError("ERREUR : Aucun SplineContainer trouvé !");
+            UnityEngine.Debug.LogError("Aucun SplineContainer trouvé !");
             yield break;
         }
 
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
 
-        float pathLength = _currentSpline.CalculateLength();
-        float duration = pathLength / speed;
+        float duration = _currentSpline.CalculateLength() / speed;
 
         DOVirtual.Float(0f, 1f, duration, (t) =>
         {
-            // ? MovePosition au lieu de transform.position
-            // déclenche les OnTriggerEnter/Exit sur les kinematic Rigidbodies
             _rigidbody.MovePosition(GetSplineWorldPosition(t));
         })
         .SetEase(Ease.InOutSine)
@@ -79,7 +74,6 @@ public class StarLauncher : MonoBehaviour
         _rigidbody.angularVelocity = Vector3.zero;
         _playerController.isLaunching = false;
 
-        // Calculer la direction vers la planète la plus proche
         GravityArea[] all = FindObjectsByType<GravityArea>(FindObjectsSortMode.None);
         GravityArea nearest = null;
         float best = float.MaxValue;
@@ -102,13 +96,9 @@ public class StarLauncher : MonoBehaviour
         {
             timer -= Time.fixedDeltaTime;
 
-            // Direction vers la planète cible
-            Vector3 dir = (target.transform.position - transform.position).normalized;
-
-            // Appliquer la force directement, sans passer par GravityBody
+            Vector3 dir = target.GetGravityDirection(_gravityBody).normalized;
             _rigidbody.AddForce(dir * 800f * Time.fixedDeltaTime, ForceMode.Acceleration);
 
-            // Aligner le joueur sur cette gravité
             Quaternion targetRot = Quaternion.FromToRotation(transform.up, -dir)
                                    * transform.rotation;
             _rigidbody.MoveRotation(Quaternion.Slerp(
@@ -117,7 +107,7 @@ public class StarLauncher : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        // Après 2 secondes, réactiver GravityBody normalement
+        _gravityBody.SetArea(target);
         _gravityBody.isActive = true;
         UnityEngine.Debug.Log("[Land] GravityBody réactivé");
     }
