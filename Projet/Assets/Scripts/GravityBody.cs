@@ -12,48 +12,48 @@ public class GravityBody : MonoBehaviour
     {
         get
         {
-            if (_gravityAreas.Count == 0) return Vector3.zero;
-            _gravityAreas.Sort((a, b) => a.Priority.CompareTo(b.Priority));
-            return _gravityAreas.Last().GetGravityDirection(this).normalized;
+            if (gravityAreas.Count == 0) return Vector3.zero;
+            gravityAreas.Sort((a, b) => a.Priority.CompareTo(b.Priority));
+            return gravityAreas.Last().GetGravityDirection(this).normalized;
         }
     }
 
-    private Rigidbody _rigidbody;
-    private List<GravityArea> _gravityAreas;
+    private Rigidbody rigidbody;
+    private List<GravityArea> gravityAreas;
 
     void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        _gravityAreas = new List<GravityArea>();
+        rigidbody = GetComponent<Rigidbody>();
+        gravityAreas = new List<GravityArea>();
     }
 
     void FixedUpdate()
     {
         if (!isActive) return;
 
-        _rigidbody.AddForce(
+        rigidbody.AddForce(
             GravityDirection * (GRAVITY_FORCE * Time.fixedDeltaTime),
             ForceMode.Acceleration);
 
         Quaternion upRotation = Quaternion.FromToRotation(transform.up, -GravityDirection);
         Quaternion newRotation = Quaternion.Slerp(
-            _rigidbody.rotation,
-            upRotation * _rigidbody.rotation,
+            rigidbody.rotation,
+            upRotation * rigidbody.rotation,
             Time.fixedDeltaTime * 3f);
-        _rigidbody.MoveRotation(newRotation);
+        rigidbody.MoveRotation(newRotation);
     }
 
     public void SetArea(GravityArea area)
     {
-        _gravityAreas.Clear();
-        _gravityAreas.Add(area);
+        gravityAreas.Clear();
+        gravityAreas.Add(area);
     }
 
     public void AddGravityArea(GravityArea area)
     {
-        if (!_gravityAreas.Contains(area))
-            _gravityAreas.Add(area);
+        if (!gravityAreas.Contains(area))
+            gravityAreas.Add(area);
     }
 
-    public void RemoveGravityArea(GravityArea area) => _gravityAreas.Remove(area);
+    public void RemoveGravityArea(GravityArea area) => gravityAreas.Remove(area);
 }

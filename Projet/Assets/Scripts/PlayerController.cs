@@ -2,44 +2,44 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private LayerMask _groundMask;
-    [SerializeField] private Transform _groundCheck;
-    [SerializeField] private Transform _cam;
+    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform camera;
 
-    private float _groundCheckRadius = 0.3f;
-    private float _speed = 8f;
-    private float _turnSpeed = 1500f;
-    private float _jumpForce = 500f;
+    private float groundCheckRadius = 0.3f;
+    private float speed = 8f;
+    private float turnSpeed = 1500f;
+    private float jumpForce = 500f;
 
-    private Rigidbody _rigidbody;
-    private Vector3 _direction;
-    private GravityBody _gravityBody;
+    private Rigidbody rigidbody;
+    private Vector3 direction;
+    private GravityBody gravityBody;
 
     [HideInInspector] public bool isLaunching = false;
 
     void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        _gravityBody = GetComponent<GravityBody>();
+        rigidbody = GetComponent<Rigidbody>();
+        gravityBody = GetComponent<GravityBody>();
     }
 
     void Update()
     {
         if (isLaunching) return;
 
-        _direction = new Vector3(
+        direction = new Vector3(
             Input.GetAxisRaw("Horizontal"), 0f,
             Input.GetAxisRaw("Vertical")
         ).normalized;
 
         bool isGrounded = Physics.CheckSphere(
-            _groundCheck.position, _groundCheckRadius, _groundMask
+            groundCheck.position, groundCheckRadius, groundMask
         );
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            _rigidbody.AddForce(
-                -_gravityBody.GravityDirection * _jumpForce,
+            rigidbody.AddForce(
+                -gravityBody.GravityDirection * jumpForce,
                 ForceMode.Impulse
             );
         }
@@ -49,24 +49,24 @@ public class PlayerController : MonoBehaviour
     {
         if (isLaunching) return;
 
-        bool isRunning = _direction.magnitude > 0.1f;
+        bool isRunning = direction.magnitude > 0.1f;
 
         if (isRunning)
         {
-            Vector3 direction = transform.forward * _direction.z;
-            _rigidbody.MovePosition(
-                _rigidbody.position + direction * (_speed * Time.fixedDeltaTime)
+            Vector3 direction = transform.forward * this.direction.z;
+            rigidbody.MovePosition(
+                rigidbody.position + direction * (speed * Time.fixedDeltaTime)
             );
 
             Quaternion rightDirection = Quaternion.Euler(
-                0f, _direction.x * (_turnSpeed * Time.fixedDeltaTime), 0f
+                0f, this.direction.x * (turnSpeed * Time.fixedDeltaTime), 0f
             );
             Quaternion newRotation = Quaternion.Slerp(
-                _rigidbody.rotation,
-                _rigidbody.rotation * rightDirection,
+                rigidbody.rotation,
+                rigidbody.rotation * rightDirection,
                 Time.fixedDeltaTime * 3f
             );
-            _rigidbody.MoveRotation(newRotation);
+            rigidbody.MoveRotation(newRotation);
         }
     }
 }

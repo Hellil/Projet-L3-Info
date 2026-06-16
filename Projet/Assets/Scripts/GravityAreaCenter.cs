@@ -4,8 +4,8 @@ using UnityEngine;
 public class GravityAreaCenter : GravityArea
 {
     
-    public override Vector3 GetGravityDirection(GravityBody _gravityBody)
+    public override Vector3 GetGravityDirection(GravityBody gravityBody)
     {
-        return (transform.position - _gravityBody.transform.position).normalized;
+        return (transform.position - gravityBody.transform.position).normalized;
     }
 }

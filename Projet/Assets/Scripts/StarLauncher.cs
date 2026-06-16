@@ -7,41 +7,41 @@ using System.Diagnostics;
 
 public class StarLauncher : MonoBehaviour
 {
-    private PlayerController _playerController;
-    private GravityBody _gravityBody;
-    private Rigidbody _rigidbody;
-    private SplineContainer _currentSpline;
+    private PlayerController playerController;
+    private GravityBody gravityBody;
+    private Rigidbody rigidbody;
+    private SplineContainer currentSpline;
 
     [Range(0, 50)]
     public float speed = 10f;
 
     public bool insideLaunchStar;
-    private Transform _launchObject;
+    private Transform launchObject;
 
     void Start()
     {
-        _playerController = GetComponent<PlayerController>();
-        _gravityBody = GetComponent<GravityBody>();
-        _rigidbody = GetComponent<Rigidbody>();
+        playerController = GetComponent<PlayerController>();
+        gravityBody = GetComponent<GravityBody>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
         if (insideLaunchStar && Input.GetKeyDown(KeyCode.Space))
         {
-            _playerController.isLaunching = true;
+            playerController.isLaunching = true;
             StartCoroutine(Launch());
         }
     }
 
     IEnumerator Launch()
     {
-        _gravityBody.isActive = false;
-        _rigidbody.isKinematic = true;
+        gravityBody.isActive = false;
+        rigidbody.isKinematic = true;
         DOTween.KillAll();
 
-        _currentSpline = _launchObject.GetComponentInChildren<SplineContainer>();
-        if (_currentSpline == null)
+        currentSpline = launchObject.GetComponentInChildren<SplineContainer>();
+        if (currentSpline == null)
         {
             UnityEngine.Debug.LogError("Aucun SplineContainer trouvé !");
             yield break;
@@ -50,11 +50,11 @@ public class StarLauncher : MonoBehaviour
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
 
-        float duration = _currentSpline.CalculateLength() / speed;
+        float duration = currentSpline.CalculateLength() / speed;
 
         DOVirtual.Float(0f, 1f, duration, (t) =>
         {
-            _rigidbody.MovePosition(GetSplineWorldPosition(t));
+            rigidbody.MovePosition(GetSplineWorldPosition(t));
         })
         .SetEase(Ease.InOutSine)
         .OnComplete(Land);
@@ -62,17 +62,17 @@ public class StarLauncher : MonoBehaviour
 
     Vector3 GetSplineWorldPosition(float t)
     {
-        _currentSpline.Spline.Evaluate(
+        currentSpline.Spline.Evaluate(
             t, out float3 pos, out float3 tangent, out float3 up);
-        return _currentSpline.transform.TransformPoint((Vector3)pos);
+        return currentSpline.transform.TransformPoint((Vector3)pos);
     }
 
     void Land()
     {
-        _rigidbody.isKinematic = false;
-        _rigidbody.linearVelocity = Vector3.zero;
-        _rigidbody.angularVelocity = Vector3.zero;
-        _playerController.isLaunching = false;
+        rigidbody.isKinematic = false;
+        rigidbody.linearVelocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
+        playerController.isLaunching = false;
 
         GravityArea[] all = FindObjectsByType<GravityArea>(FindObjectsSortMode.None);
         GravityArea nearest = null;
@@ -86,7 +86,7 @@ public class StarLauncher : MonoBehaviour
         if (nearest != null)
             StartCoroutine(ForceGravity(nearest));
         else
-            _gravityBody.isActive = true;
+            gravityBody.isActive = true;
     }
 
     IEnumerator ForceGravity(GravityArea target)
@@ -96,19 +96,19 @@ public class StarLauncher : MonoBehaviour
         {
             timer -= Time.fixedDeltaTime;
 
-            Vector3 dir = target.GetGravityDirection(_gravityBody).normalized;
-            _rigidbody.AddForce(dir * 800f * Time.fixedDeltaTime, ForceMode.Acceleration);
+            Vector3 dir = target.GetGravityDirection(gravityBody).normalized;
+            rigidbody.AddForce(dir * 800f * Time.fixedDeltaTime, ForceMode.Acceleration);
 
             Quaternion targetRot = Quaternion.FromToRotation(transform.up, -dir)
                                    * transform.rotation;
-            _rigidbody.MoveRotation(Quaternion.Slerp(
-                _rigidbody.rotation, targetRot, Time.fixedDeltaTime * 5f));
+            rigidbody.MoveRotation(Quaternion.Slerp(
+                rigidbody.rotation, targetRot, Time.fixedDeltaTime * 5f));
 
             yield return new WaitForFixedUpdate();
         }
 
-        _gravityBody.SetArea(target);
-        _gravityBody.isActive = true;
+        gravityBody.SetArea(target);
+        gravityBody.isActive = true;
         UnityEngine.Debug.Log("[Land] GravityBody réactivé");
     }
 
@@ -117,7 +117,7 @@ public class StarLauncher : MonoBehaviour
         if (other.CompareTag("Launch"))
         {
             insideLaunchStar = true;
-            _launchObject = other.transform;
+            launchObject = other.transform;
         }
     }
 

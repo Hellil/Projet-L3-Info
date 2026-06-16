@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class GravityAreaPoint : GravityArea
 {
-    [SerializeField] private Vector3 _center;
+    [SerializeField] private Vector3 center;
 
     
-    public override Vector3 GetGravityDirection(GravityBody _gravityBody)
+    public override Vector3 GetGravityDirection(GravityBody gravityBody)
     {
-        return (_center - _gravityBody.transform.position).normalized;
+        return (center - gravityBody.transform.position).normalized;
     }
 }

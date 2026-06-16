@@ -301,11 +301,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5851576c808cc4ab2c8400a18d6785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groundMask:
+  groundMask:
     serializedVersion: 2
     m_Bits: 8
-  _groundCheck: {fileID: 2426596154567813008}
-  _cam: {fileID: 1687258585}
+  groundCheck: {fileID: 2426596154567813008}
+  camera: {fileID: 1687258585}
   isLaunching: 0
 --- !u!114 &1375158419634042497
 MonoBehaviour:
@@ -332,6 +332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea31308dbbcefed44bdf90c9c0b5a17d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StarLauncher
+  speed: 10
+  insideLaunchStar: 0
 --- !u!1 &7797411727102519914
 GameObject:
   m_ObjectHideFlags: 0
