@@ -2,7 +2,7 @@
 using DG.Tweening;
 using Unity.Cinemachine;
 
-public class StarAnimation : MonoBehaviour
+public class StarAnimation : MonoBehaviour //this script is now useless
 {
     private Animator _animator;
     private Transform _big;
