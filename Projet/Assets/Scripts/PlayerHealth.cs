@@ -25,5 +25,6 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("[PLAYER] Le joueur est mort !");
         //ajouter l'écran de game over ou qq chose pour dire que le joueur est mort 
+        
     }
 }
