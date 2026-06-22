@@ -1,0 +1,30 @@
+## MANUEL D'UTILISATION
+
+Ce manuel est destiné aux joueurs et aux testeurs afin de prendre en main le prototype du jeu.
+
+### Objectif du Jeu
+Vous contrôlez un lapin articulé perdu dans l'espace. Votre but est de vous déplacer de planète en planète jusqu'à la fin du niveau tout en évitant de vous faire toucher par les citrouilles ennemies ( pumpkin ) qui vous traquent. Si une citrouille vous touche 3 fois, la partie s'arrête.
+
+### Commandes de Jeu
+Les contrôles du joueur sont configurés de la manière suivante :
+
+* **Déplacement :** Utilisez les **Flèches directionnelles** (Haut, Bas, Gauche, Droite) ou les touches **Z, Q, S, D** pour vous déplacer à la surface de la sphère.
+* **Saut :** Appuyez sur la touche **Espace** pour sauter.
+* **Caméra :** La caméra suit automatiquement les mouvements et l'orientation du joueur.
+
+### Éléments de Gameplay & Interface
+* **Comportement Ennemi :** Les citrouilles patrouillent aléatoirement. Dès que vous entrez dans leur rayon de détection, elles passent en mode poursuite et accélèrent vers vous.
+* **Game Over :** Lorsque votre santé tombe à zéro, l'écran se fige instantanément et le message **GAME OVER** s'affiche en grand au centre de l'écran.
+
+---
+
+## MANUEL D'EXPLOITATION
+
+Ce manuel technique est destiné aux développeurs, administrateurs et enseignants chargés de déployer, configurer et exécuter le projet sous un environnement Linux .
+
+### Prérequis Système
+Pour exécuter et compiler ce projet dans de bonnes conditions, votre machine doit disposer de :
+* **Système d'exploitation :** Ubuntu Linux (testé et validé sur Ubuntu 22.04+ / 24.04).
+* **Moteur de jeu :** Unity 6 (Version spécifique : `6000.4.0f1` ).
+* **Environnement .NET :** SDK .NET 9.0 (minimum `.NET 9.0.202` requis pour le chargement du fichier de projet global `.slnx`).
+* **Éditeur de Code :** VS Code avec l'extension *C# Dev Kit* installée (ou équivalent).
