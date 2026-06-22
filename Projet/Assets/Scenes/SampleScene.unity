@@ -1564,7 +1564,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1130580463}
   dialogues:
   - 'Quand tu es proche d''un petit cube.... '
-  - Appuis sur [Space Bar]  pour t'envoler !!
+  - Appuie sur [Space Bar] pour t'envoler !!
   delaiEntreLettres: 0.03
   pauseMinimale: 2
 --- !u!65 &552500421
@@ -3987,14 +3987,14 @@ MonoBehaviour:
   dialoguePanel: {fileID: 301022622}
   dialogueText: {fileID: 1130580463}
   dialogues:
-  - Bonjour aventurier
+  - Bonjour aventurier !
   - Plait-il ?
-  - "AH ! c'est votre premi\xE8re fois"
+  - "Ah ! C'est votre premi\xE8re fois ?"
   - Je vais faire simple....
-  - "le monde change sa rotation en m\xEAme temps que vous quand vous allez \xE0
-    gauche le monde tourne \xE0 gauche !"
-  - 'Appuis sur la touche [Escape] la  pause '
-  - "Utiliser ce pouvoir \xE0 votre avantages ! "
+  - "Le monde change sa rotation en m\xEAme temps que vous quand vous allez \xE0
+    gauche, le monde tourne \xE0 gauche !"
+  - 'Tu peux appuyer sur la touche [Escape] pour mettre en pause. '
+  - "Utilise ce pouvoir \xE0 ton avantage ! "
   delaiEntreLettres: 0.03
   pauseMinimale: 2
 --- !u!1 &1645337734
