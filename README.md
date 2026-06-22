@@ -3,7 +3,7 @@
 Ce manuel est destiné aux joueurs et aux testeurs afin de prendre en main le prototype du jeu.
 
 ### Objectif du Jeu
-Vous contrôlez un lapin articulé perdu dans l'espace. Votre but est de vous déplacer de planète en planète jusqu'à la fin du niveau tout en évitant de vous faire toucher par les citrouilles ennemies ( pumpkin ) qui vous traquent. Si une citrouille vous touche 3 fois, la partie s'arrête.
+Vous contrôlez un lapin perdu dans l'espace. Votre but est de vous déplacer de planète en planète jusqu'à la fin du niveau tout en évitant de vous faire toucher par les citrouilles ennemies (pumpkin) qui vous traquent. Si une citrouille vous touche 3 fois, la partie s'arrête.
 
 ### Commandes de Jeu
 Les contrôles du joueur sont configurés de la manière suivante :
